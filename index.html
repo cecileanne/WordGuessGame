@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Rocket Ransom Letter</title>
+  </head>
+  <body>
+    <script>
+      const newCaption =
+        "Hey twerps, don't try to hard guessing the Pokemon we just stole";
+      const winCaption = [currentWordObject] + ": Thanks for rescuing me!";
+      const lossCaption =
+        [currentWordObject] + ": Oh no, the sent me to the grinder!";
+      let remainingGuesses = 10;
+      let lettersGuessed = 0;
+      let Wins = 0;
+      let Losses = 0;
+    </script>
+
+    <!-- Row 1 put in sticky nav bar at top? - Theme will be pokemon go / image Rocket's Ransom Letter /  -->
+
+    <!-- Row 2, Column 1 Preview Window  --  image with a caption below based on status
+        newImage
+        currentWordObject winLoseImage -->
+
+    <!-- Row 2 Column 2 Game dynamics -->
+
+    <!-- Press Any Key to Get Started > 
+        if there is no current word, keyPressUp runs startGame
+            resets remainingGuesses to 10
+            creates boxes for a currentWordObject
+            clears lettersGuessed
+            changes image to newImage -->
+
+    <!-- userGuess
+        event.keyPressUp logs the letter  -->
+
+    <!-- currentWord (will be an object, letter1:__ etc, have a win image and a lose image)
+        <p>Guess letters to figure out which Pokemon has gone missing</p>
+        Each letterIndex in the currentWordArray is a box with solid bottom borders with content hidden 
+            (except "_" if needed will have no border for phrases that have spaces)
+        if any of the letters not A-Z are depressed, nothing will happen
+        if any of the letters in the currentWordArray are depressed, they will appear in the empty box AND lettersGuessed
+        else they will subtract 1 from remainingGuesses AND appear in lettersGuessed
+          -->
+
+    <!-- remainingGuesses - start at 10, lowest it can be is 0 -->
+
+    <!-- lettersGuessed - any letter A-Z will appear as a log -->
+
+    <!-- If all letters in current word are guessed, win plus 1, change image to currentWordObject winLoseImage and use winCaption -->
+    <!-- If all letters in current word are not guessed and remainingGuesses=0, losses plus 1
+        correct word populates, change image to currentWordObject winLoseImage and lossCaption -->
+
+    <!-- Row 3 Wins Losses -- both start at 0 -->
+    <!-- song plays when newImage is on, cheer audio plays when win, sad trombone plays when loss 
+        3 seconds after audio completes, runs startGame-->
+
+    <!-- Sound on and off toggle -->
+  </body>
+</html>
