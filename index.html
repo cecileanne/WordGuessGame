@@ -15,86 +15,109 @@
     <title>Rocket Ransom Letter</title>
   </head>
   <body>
+    <!-- Header - Theme will be pokemon go / image Rocket's Ransom Letter /  -->
     <header class="header">
       <img src="images/Header.png" alt="Pokemon ransom note" width="100%" />
     </header>
 
     <script>
+      // defining some variables
       const newCaption =
         "Hey twerps, don't try to hard guessing the Pokemon we just stole";
       const winCaption = [currentWordObject] + ": Thanks for rescuing me!";
       const lossCaption =
         [currentWordObject] + ": Oh no, the sent me to the grinder!";
-      let remainingGuesses = 10;
+      let userGuess = event.keyPressUp;
+      let remainingGuessesArray = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
       let lettersGuessed = 0;
       let Wins = 0;
       let Losses = 0;
 
-      let userGuess = event.keyPressUp;
+      //  Press Any Key to Get Started
+      //  if there is no current word, keyPressUp runs startGame
+      //      resets remainingGuesses to 10
+      //      clears lettersGuessed
+      //      clears .preview.header
+      //      .preview.header becomes newImage and newCaption
+      //      selects new currentWordObject RANDOMLY
+      //      creates boxes for a currentWordObject
+
+      // userGuess
+      //    event.keyPressUp logs the letter
+      //    letterAppears = confirm(userGuess)
+      //    if (letterAppears = true) {}
+
+      // currentWord (will be an object, letter1:__ etc, have a win image and a lose image)
+      //    <p>Guess letters to figure out which Pokemon has gone missing</p>
+      //    Each letterIndex in the currentWordArray is a box with solid bottom borders with content hidden
+      //        (except "_" if needed will have no border for phrases that have spaces and punctuation will be unhidden)
+      //    if userGuess  any of the letters not A-Z are depressed, nothing will happen
+      //    if any of the letters in the currentWordArray are depressed, they will appear in the empty box AND lettersGuessed
+      //    else they will subtract 1 from remainingGuesses AND appear in lettersGuessed
+
+      // remainingGuessesArray - start at 10, lowest it can be is 0 resulting in a for loop to output guessesRemaining
+      for (
+        let remainingIndex = 0;
+        remainingIndex < remainingGuessesArray.length;
+        index++
+      ) {
+        const guessesRemaining = remainingGuessesArray[remainingIndex];
+      }
+
+      // lettersGuessed - any letter A-Z will appear as a log
+
+      // If all letters in current word are guessed, win plus 1
+      //    .preview document.write currentWordObject.winLoseImage + winCaption
+
+      // If all letters in current word are not guessed and remainingGuesses=0, losses plus 1
+      //    correct word reveals (no longer is hidden)
+      //    .preview document.write currentWordObject.winLoseImage + lossCaption
+
+      // <!-- Row 3 Wins Losses -- both start at 0 -->
+      // <!-- song plays when newImage is on, cheer audio plays when win, sad trombone plays when loss
+      //    After 5 seconds (or after audio completes), runs startGame-->
     </script>
 
-    <!-- Row 1 put in sticky nav bar at top? - Theme will be pokemon go / image Rocket's Ransom Letter /  -->
-
-    <!-- Row 2, Column 1 Preview Window  --  image with a caption below based on status
-        newImage
-        currentWordObject winLoseImage -->
-
-    <!-- Row 2 Column 2 Game dynamics -->
-
-    <!-- Press Any Key to Get Started > 
-        if there is no current word, keyPressUp runs startGame
-            resets remainingGuesses to 10
-            creates boxes for a currentWordObject
-            clears lettersGuessed
-            changes image to newImage -->
-
-    <!-- userGuess
-        event.keyPressUp logs the letter  -->
-
-    <!-- currentWord (will be an object, letter1:__ etc, have a win image and a lose image)
-        <p>Guess letters to figure out which Pokemon has gone missing</p>
-        Each letterIndex in the currentWordArray is a box with solid bottom borders with content hidden 
-            (except "_" if needed will have no border for phrases that have spaces and punctuation will be unhidden)
-        if any of the letters not A-Z are depressed, nothing will happen
-        if any of the letters in the currentWordArray are depressed, they will appear in the empty box AND lettersGuessed
-        else they will subtract 1 from remainingGuesses AND appear in lettersGuessed
-          -->
-
-    <!-- remainingGuesses - start at 10, lowest it can be is 0 -->
-
-    <!-- lettersGuessed - any letter A-Z will appear as a log -->
-
-    <!-- If all letters in current word are guessed, win plus 1, change image to currentWordObject winLoseImage and use winCaption -->
-    <!-- If all letters in current word are not guessed and remainingGuesses=0, losses plus 1
-        correct word populates, change image to currentWordObject winLoseImage and lossCaption -->
-
-    <!-- Row 3 Wins Losses -- both start at 0 -->
-    <!-- song plays when newImage is on, cheer audio plays when win, sad trombone plays when loss 
-        3 seconds after audio completes, runs startGame-->
-
-    <!-- Sound on and off toggle -->
-
+    <!-- Row 1, Column 1 Preview Window  --  image with a caption below based on status (if a new game header tagline shows)
+        If none or new game: newImage
+        If win/loss: currentWordObject winLoseImage -->
     <div class="row">
       <div class="col-md-4">
         <div class="container">
-          <img src="images/NEWrocket.png" alt="Team Rocket group photo" />
-          <p>
-            CAPTION WILL GO HERE: Hey twerps, don't try to hard guessing the
-            Pokemon we just stole!
-          </p>
+          <div class="preview">
+            <img src="images/NEWrocket.png" alt="Team Rocket group photo" />
+            <p>
+              CAPTION WILL GO HERE: Hey twerps, don't try to hard guessing the
+              Pokemon we just stole!
+            </p>
+          </div>
         </div>
       </div>
+
+      <!-- Row 2 Column 2 Game dynamics -->
       <div class="col-md-8">
         <div class="container">
-          <h1>Press any Key to Start!</h1>
-          <h2>Current Word:</h2>
-          <h4>Number of Guesses Remaining:</h4>
-          <h4>Letters Already Guessed:</h4>
-          <hr />
-          <h3>Wins:</h3>
-          <h3>Losses:</h3>
+          <div class="puzzleBox">
+            <h2>The missing pokemon is:</h2>
+            <!-- "Press any key to Start" will be replaced by the puzzle box -->
+            <br />
+            <h1>Press any Key to Start! OR Puzzles goes here</h1>
+            <br />
+            <!-- These need to also document.write the guessesRemaining and lettersGuessed -->
+            <h4>Number of Guesses Remaining:</h4>
+            <br />
+            <h4>Letters Already Guessed:</h4>
+          </div>
+          <div class="scoreBox">
+            <h3>Wins:</h3>
+            <h3>Losses:</h3>
+          </div>
         </div>
       </div>
+    </div>
+
+    <div class="row">
+      <!-- Sound on and off toggle to find one to copy/paste-->
     </div>
   </body>
 </html>
