@@ -15,18 +15,19 @@
     <title>Rocket Ransom Letter</title>
   </head>
   <body>
-    <!-- Header - Theme will be pokemon go / image Rocket's Ransom Letter /  -->
+    <!-- Header - Theme is Team Rocket has kidnapped a pokemon and sent us a Ransom Letter /  -->
     <header class="header">
       <img src="images/Header.png" alt="Pokemon ransom note" width="100%" />
     </header>
 
     <script>
-      // defining some variables
+      // defining some variables to move down in the script when I use
+      // currentWord is the pokemon currently being solved
       const newCaption =
-        "Hey twerps, don't try to hard guessing the Pokemon we just stole";
-      const winCaption = [currentWordObject] + ": Thanks for rescuing me!";
+        "Hey twerps, don't try to hard guessing the Pokemon we just stole! Sorry the note got damaged so you won't know who we have... Mwahahaha!";
+      const winCaption = [currentWord] + ": Thanks for rescuing me!";
       const lossCaption =
-        [currentWordObject] + ": Oh no, the sent me to the grinder!";
+        [currentWord] + ": Oh no, the sent me to the grinder!";
       let userGuess = event.keyPressUp;
       let remainingGuessesArray = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
       let lettersGuessed = 0;
@@ -34,16 +35,39 @@
       let Losses = 0;
 
       //  Press Any Key to Get Started
-      //  if there is no current word, keyPressUp runs startGame
+      //  keyPressUp runs startGame
+      //      .puzzleBox.h1 replaces "Press Any Key to Start" with puzzlePokemon
       //      resets remainingGuesses to 10
       //      clears lettersGuessed
       //      clears .preview.header
       //      .preview.header becomes newImage and newCaption
-      //      selects new currentWordObject RANDOMLY
-      //      creates boxes for a currentWordObject
+
+      //      Commputer selects new currentWord randomly
+      function selectPokemon() {
+        const possiblePokemon = [
+          `Bidoof`,
+          `Cloyster`,
+          `Jynx`,
+          `Mareep`,
+          `Mesprit`,
+          `Metapod`,
+          `Pikachu`,
+          `Politoed`,
+          `Slakoth`,
+          `Snorlax`,
+          `Squirtle`,
+          `Suicune`,
+          `Tangela`,
+          `Venomoth`,
+          `Vulpix`
+        ];
+        let currentWord =
+          possiblePokemon[math.floor(Math.random() * possiblePokemon.length)];
+        //display the currentWord as "_" for every letter
+      }
 
       // userGuess
-      //    event.keyPressUp logs the letter
+      //    event.keyPressUp logs the letter (toUppercase)
       //    letterAppears = confirm(userGuess)
       //    if (letterAppears = true) {}
 
@@ -101,7 +125,7 @@
             <h2>The missing pokemon is:</h2>
             <!-- "Press any key to Start" will be replaced by the puzzle box -->
             <br />
-            <h1>Press any Key to Start! OR Puzzles goes here</h1>
+            <h1>Press any Key to Start!</h1>
             <br />
             <!-- These need to also document.write the guessesRemaining and lettersGuessed -->
             <h4>Number of Guesses Remaining:</h4>
