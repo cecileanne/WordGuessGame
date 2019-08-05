@@ -20,29 +20,19 @@
       <img src="images/Header.png" alt="Pokemon ransom note" width="100%" />
     </header>
 
-    <script>
-      // defining some variables to move down in the script when I use
-      // currentWord is the pokemon currently being solved
+    <script type="text/javascript">
+      //  Press Any Key to Get Started
+      //    TO DO Deletes "Press Any Key to Start" from .puzzlebox.h1 and runs startGame
       const newCaption =
         "Hey twerps, don't try to hard guessing the Pokemon we just stole! Sorry the note got damaged so you won't know who we have... Mwahahaha!";
-      const winCaption = [currentWord] + ": Thanks for rescuing me!";
-      const lossCaption =
-        [currentWord] + ": Oh no, the sent me to the grinder!";
-      let userGuess = event.keyPressUp;
-      let remainingGuessesArray = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+
+      //    and runs startGame - resets remaining guesses to 10, clears letters already guessed and makes the image newImage with newCaption
+      //        TO DO populates preview with newImage and newCaption
+      //        resets remainingGuesses to 10
+      let remainingGuesses = [0];
+      //        clears lettersGuessed
       let lettersGuessed = 0;
-      let Wins = 0;
-      let Losses = 0;
-
-      //  Press Any Key to Get Started
-      //  keyPressUp runs startGame
-      //      .puzzleBox.h1 replaces "Press Any Key to Start" with puzzlePokemon
-      //      resets remainingGuesses to 10
-      //      clears lettersGuessed
-      //      clears .preview.header
-      //      .preview.header becomes newImage and newCaption
-
-      //      Commputer selects new currentWord randomly
+      //        Computer selects new currentWord randomly
       function selectPokemon() {
         const possiblePokemon = [
           `Bidoof`,
@@ -63,16 +53,30 @@
         ];
         let currentWord =
           possiblePokemon[math.floor(Math.random() * possiblePokemon.length)];
-        //display the currentWord as "_" for every letter
       }
 
-      // userGuess
-      //    event.keyPressUp logs the letter (toUppercase)
-      //    letterAppears = confirm(userGuess)
-      //    if (letterAppears = true) {}
+      //        Using the currentWord taken from the array of possible pokemon; computer create an array of blank spaces for each of the corresponding letters of the word.
+      //        let currentWordBlanks = [];
+      //        for (let indexPossiblePokemon = 0; indexPossiblePokemon < pokemonName.length; indexPossiblePokemon++) {
+      //            const currentWordBlanks
+      //        }
 
+      //    Computer displays this new array of blank spaces in the h1 div of the puzzle box
+
+      //    User presses a letter key, which the computer will read as a CAPITAL LETTER
+      //        non-letter keys will be null (not undefined)
+      //    let userGuess
+      //    event.keyPressUp logs the letter (toUppercase)
+
+      document.onkeyup = function() {
+        const userGuess = String.fromCharCode(event.keyCode.toUpperCase);
+      };
+
+      // Compare currentWord to currentWordBlank
       // currentWord (will be an object, letter1:__ etc, have a win image and a lose image)
       //    <p>Guess letters to figure out which Pokemon has gone missing</p>
+      //    letterAppears = confirm(userGuess) > so currentWordUnsolved array replaces with possiblePokemons array
+      //    if (letterAppears = true) {}
       //    Each letterIndex in the currentWordArray is a box with solid bottom borders with content hidden
       //        (except "_" if needed will have no border for phrases that have spaces and punctuation will be unhidden)
       //    if userGuess  any of the letters not A-Z are depressed, nothing will happen
@@ -80,10 +84,11 @@
       //    else they will subtract 1 from remainingGuesses AND appear in lettersGuessed
 
       // remainingGuessesArray - start at 10, lowest it can be is 0 resulting in a for loop to output guessesRemaining
+      const remainingGuessesArray = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
       for (
-        let remainingIndex = 0;
+        let remainingIndex = [0];
         remainingIndex < remainingGuessesArray.length;
-        index++
+        remainingIndex++
       ) {
         const guessesRemaining = remainingGuessesArray[remainingIndex];
       }
@@ -93,18 +98,35 @@
       // If all letters in current word are guessed, win plus 1
       //    .preview document.write currentWordObject.winLoseImage + winCaption
 
-      // If all letters in current word are not guessed and remainingGuesses=0, losses plus 1
+      // If all letters in current word are not guessed and remainingGuesses = [9], losses plus 1
       //    correct word reveals (no longer is hidden)
       //    .preview document.write currentWordObject.winLoseImage + lossCaption
 
-      // <!-- Row 3 Wins Losses -- both start at 0 -->
+      let Wins = 0;
+      let Losses = 0;
+
+      // Computer chooses which images to put in preview box
+      //    const winCaption = [currentWord] + ": Thanks for rescuing me!";
+      //    const lossCaption = [currentWord] + ": Oh no, the sent me to the grinder!";
       // <!-- song plays when newImage is on, cheer audio plays when win, sad trombone plays when loss
-      //    After 5 seconds (or after audio completes), runs startGame-->
+      //    After 5 seconds (or after audio completes), runs startGame
+      //      .puzzleBox.h1 shows currentWordUnsolved
+      //      resets remainingGuesses to 10
+      //      clears lettersGuessed
+      //      clears .preview to become newImage + newCaption
+      // list of values that will appear on the page
+      // document.getElementById("captionID").textContent = function caption(captionArray) {}
+      document.getElementById(
+        "remainingGuessesId"
+      ).textContent = remainingGuesses;
+      document.getElementById("lettersGuessedId").textContent = lettersGuessed;
+      document.getElementById("winsId").textContent = Wins;
+      document.getElementById("lossesId").textContent = Losses;
     </script>
 
     <!-- Row 1, Column 1 Preview Window  --  image with a caption below based on status (if a new game header tagline shows)
         If none or new game: newImage
-        If win/loss: currentWordObject winLoseImage -->
+        If win/loss: currentWord.winLoseImage -->
     <div class="row">
       <div class="col-md-4">
         <div class="container">
@@ -133,8 +155,8 @@
             <h4>Letters Already Guessed:</h4>
           </div>
           <div class="scoreBox">
-            <h3>Wins:</h3>
-            <h3>Losses:</h3>
+            <h3>Wins: <span id="winsId"></span></h3>
+            <h3>Losses: <span id="lossesId"></span></h3>
           </div>
         </div>
       </div>
