@@ -1,0 +1,19 @@
+body {
+  background: #cccccc;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+
+.header {
+  background: linear-gradient(black, #cccccc);
+}
+
+.container {
+  padding: 10px;
+  margin: 50px;
+  text-align: center;
+}
+
+.img {
+  max-width: 300px;
+  margin: 10px;
+}
