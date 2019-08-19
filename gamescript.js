@@ -6,7 +6,6 @@ const Pokemon = [
   `Mareep`,
   `Mesprit`,
   `Metapod`,
-  `Pikachu`,
   `Politoed`,
   `Slakoth`,
   `Snorlax`,
@@ -16,11 +15,12 @@ const Pokemon = [
   `Venomoth`,
   `Vulpix`
 ];
+
 //  Keep the user's possible guesses to the alphabet only (no punctuation)
 const possibleLetterGuesses = [`abcdefghijklmnopqrstuvwxyz`];
 //  Setting other variables for gameplay
 //  What the user presses - if time set toUpperCase
-let userGuess = event.onkeyup;
+let userGuess = ``;
 //  Create a boolean state that the computer has to compare to -- since the user has not guessed yet, it's false
 let guessState = false;
 //  letters guessed (taken from alphabet list)
@@ -37,22 +37,19 @@ function unsolvedUnderscores(kidnappedPokemon) {
   }
   return underscoreArray;
 }
-//      Sets number of guesses user has to start at 10
-let remainingGuesses = 0;
 //      Boolean that the user has played a game
 let gameStart = false;
-//      Sets the number of wins and losses
-let winNumber = 0;
-let lossNumber = 0;
 
-//  Press Any Key sets up a new game (closure happens later };)
+//  Press Any Key sets up a new game termination down below and noted to delete comment};)
 document.onkeyup = function(newGameSetUp) {
   if (!gameStart) {
     gameStart = true;
+    //      Sets number of guesses user has to start at 10
     remainingGuesses = 10;
 
     //  Computer randomly selects - this is the pokemon that has been kidnapped, that the user must guess the identity of
     kidnappedPokemon = Pokemon[Math.floor(Math.random() * Pokemon.length)];
+    console.log(kidnappedPokemon);
 
     //  Computer displays this new array of blank spaces in the #puzzleBox
     document.getElementById("puzzleBox").textContent = underscoreArray.join(
@@ -123,7 +120,9 @@ document.onkeyup = function(newGameSetUp) {
 // remainingGuessesArray - start at 10, lowest it can be is 0 resulting in a for loop to output guessesRemaining
 
 // lettersGuessed - any letter A-Z will appear as a log
-
+//      Sets the number of wins and losses
+// let winNumber = ;
+// let lossNumber = ;
 // If all letters in current word are guessed, win plus 1
 //    .preview document.write currentWordObject.winLoseImage + winCaption
 
@@ -136,7 +135,8 @@ document.onkeyup = function(newGameSetUp) {
 //  If time - song plays when newImage is on, cheer audio plays when win, sad trombone plays when loss
 //      After 5 seconds (or after audio completes), runs startGame
 
-// list of values that will appear on the page
+// list of values that will appear on the page (DOM)
+//      Opening instructions
 const landingStart = (document.getElementById("pressKeyToStart").textContent =
   "Press any Key to Start!");
 const gameCaption = (document.getElementById("newCaption").textContent =
@@ -148,3 +148,5 @@ const lossNumber = document.getElementById("lossesId");
 //    Captions if win or lose
 const winCaption = [kidnappedPokemon] + ": Thanks for rescuing me!";
 const lossCaption = [kidnappedPokemon] + ": Oh no, the sent me to the grinder!";
+
+//  DOM reveals and hides
