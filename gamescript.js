@@ -30,32 +30,39 @@ let lettersGuessed = ``;
 let kidnappedPokemon = ``;
 //      Representation of the chosen word/pokemon for the user as a series of underscores
 let underscoreArray = [];
-//  Function that creates _ for each letter of the kidnapped pokemon
-function unsolvedUnderscores(kidnappedPokemon) {
-  for (let indexMon = 0; indexMon < kidnappedPokemon.length; indexMon++) {
-    underscoreArray.push("_");
-  }
-  return underscoreArray;
-}
+//      Underscores to display from the underscoreArray
+let underscores = ``;
 //      Boolean that the user has played a game
 let gameStart = false;
+//      Sets Up the game instruction (which will disappear once the game starts)
+const landingStart = (document.getElementById("pressKeyToStart").textContent =
+  "Press any Key to Start!");
 
 //  Press Any Key sets up a new game termination down below and noted to delete comment};)
-document.onkeyup = function(newGameSetUp) {
+document.onkeyup = function(event) {
   if (!gameStart) {
     gameStart = true;
+    //      Hide "Press Any Key to Start"
+    document.getElementById("pressKeyToStart").style.visibility = "hidden";
     //      Sets number of guesses user has to start at 10
     remainingGuesses = 10;
-
-    //  Computer randomly selects - this is the pokemon that has been kidnapped, that the user must guess the identity of
-    kidnappedPokemon = Pokemon[Math.floor(Math.random() * Pokemon.length)];
+    //      Computer randomly selects - this is the pokemon that has been kidnapped, that the user must guess the identity of
+    let kidnappedPokemon = Pokemon[Math.floor(Math.random() * Pokemon.length)];
     console.log(kidnappedPokemon);
 
     //  Computer displays this new array of blank spaces in the #puzzleBox
-    document.getElementById("puzzleBox").textContent = underscoreArray.join(
-      " "
+    for (
+      let generatedIndex = 0;
+      generatedIndex < kidnappedPokemon.length;
+      generatedIndex++
+    ) {
+      underscoreArray[generatedIndex] = `_`;
+    }
+    document.getElementById(`puzzleBox`).textContent = underscoreArray.join(
+      ` `
     );
 
+    // computer listens to user input
     // sets up the game if it wasn't the first one
     if (
       !lettersGuessed.includes(userGuess) &&
@@ -137,8 +144,13 @@ document.onkeyup = function(newGameSetUp) {
 
 // list of values that will appear on the page (DOM)
 //      Opening instructions
-const landingStart = (document.getElementById("pressKeyToStart").textContent =
-  "Press any Key to Start!");
+
+//get element pictures
+//<img src="images/NEWrocket.png" alt="Team Rocket group photo" /> how add alt?
+const mainImage = (document.getElementById(
+  `rocketpic`
+).src = `images/NEWrocket.png`);
+
 const gameCaption = (document.getElementById("newCaption").textContent =
   "Hey twerps, don't try to hard guessing the Pokemon we just stole! Sorry the note got damaged so you won't know who we have... Mwahahaha! See if you can guess some letters.");
 const guessCountRemaining = document.getElementById("remainingGuessesId");
